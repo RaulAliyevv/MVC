@@ -1,0 +1,79 @@
+﻿@model List<GetAdminProductVM>
+@{
+	int num = 0;
+}
+
+
+<div class="main-panel">
+	<div class="content-wrapper">
+		<div class="row">
+
+			<div class="col-lg-12 grid-margin stretch-card">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Product Table</h4>
+						<p class="text-danger">@TempData["ErrorMessage"]</p>
+						<a asp-action="create" class="btn btn-success">create</a>
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>
+											No
+										</th>
+										<th>
+											Image
+										</th>
+										<th>
+											Name
+										</th>
+										<th>
+											Price
+										</th>
+										<th>
+											Category
+										</th>
+										<th>
+											Actions
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (GetAdminProductVM prd in Model)
+									{
+										num++;
+										<tr>
+											<td class="py-1">
+												@num
+											</td>
+											<td>
+												<img src="~/assets/images/website-images/@prd.Image" />
+											</td>
+											<td>
+												@prd.Name
+											</td>
+											<td>
+												@prd.Price
+											</td>
+											<td>
+												@prd.CategoryName
+											</td>
+											<td>
+												<a asp-action="update" asp-route-id="@prd.Id" class="btn btn-primary">edit</a>
+												<a asp-action="delete" asp-route-id="@prd.Id" class="btn btn-danger">remove</a>
+												<a class="btn btn-warning">detail</a>
+											</td>
+
+										</tr>
+									}
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

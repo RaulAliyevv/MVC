@@ -1,0 +1,67 @@
+﻿@model List<Category>
+@{
+	int num = 0;
+}
+
+
+<div class="main-panel">
+	<div class="content-wrapper">
+		<div class="row">
+
+			<div class="col-lg-12 grid-margin stretch-card">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Category Table</h4>
+						<a asp-action="create" class="btn btn-success">Create</a>
+						
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>
+											No
+										</th>
+										<th>
+											Name
+										</th>
+										<th>
+											Product count
+										</th>
+										<th>
+											Actions
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (Category ctg in Model)
+									{
+										num++;
+										<tr>
+											<td class="py-1">
+												@num
+											</td>
+											<td>
+												@ctg.Name
+											</td>
+											<td>
+												@ctg.Products.Where(x => x.IsDeleted == false).Count()
+											</td>
+											<td>
+												<a asp-action="Update" asp-route-id="@ctg.Id" class="btn btn-primary">edit</a>
+												<a asp-action="Delete" asp-route-id="@ctg.Id" class="btn btn-danger">remove</a>
+												<a class="btn btn-warning">detail</a>
+											</td>
+
+										</tr>
+									}
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

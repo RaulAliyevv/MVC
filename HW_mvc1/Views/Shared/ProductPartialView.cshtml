@@ -1,0 +1,80 @@
+﻿@model List<Product>
+
+
+<div class="col-lg-12">
+    <div class="swiper-container product-slider">
+        <div class="swiper-wrapper">
+            @foreach (Product prd in Model)
+            {
+
+                <div class="swiper-slide product-item">
+                    <div class="product-img">
+                        <a asp-controller="product" asp-action="detail" asp-route-id="@prd.Id">
+                            <img class="primary-img"
+                                 src="~/assets/images/website-images/@prd.ProductImages.FirstOrDefault(x => x.IsPrimary == true)?.ImageUrl"
+                                 alt="Product Image" />
+                            <img class="secondary-img"
+                                 src="~/assets/images/website-images/@prd.ProductImages.FirstOrDefault(x => x.IsPrimary == false)?.ImageUrl"
+                                 alt="Product Image" />
+                        </a>
+                        <div class="product-add-action">
+                            <ul>
+                                <li>
+                                    <a href="wishlist.html"
+                                       data-tippy="Add to wishlist"
+                                       data-tippy-inertia="true"
+                                       data-tippy-animation="shift-away"
+                                       data-tippy-delay="50"
+                                       data-tippy-arrow="true"
+                                       data-tippy-theme="sharpborder">
+                                        <i class="pe-7s-like"></i>
+                                    </a>
+                                </li>
+                                <li class="quickview-btn"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#quickModal">
+                                    <a href="#"
+                                       data-tippy="Quickview"
+                                       data-tippy-inertia="true"
+                                       data-tippy-animation="shift-away"
+                                       data-tippy-delay="50"
+                                       data-tippy-arrow="true"
+                                       data-tippy-theme="sharpborder">
+                                        <i class="pe-7s-look"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="cart.html"
+                                       data-tippy="Add to cart"
+                                       data-tippy-inertia="true"
+                                       data-tippy-animation="shift-away"
+                                       data-tippy-delay="50"
+                                       data-tippy-arrow="true"
+                                       data-tippy-theme="sharpborder">
+                                        <i class="pe-7s-cart"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <a class="product-name" asp-controller="product" asp-action="detail" asp-route-id="@prd.Id">@prd.Name</a>
+                        <div class="price-box pb-1">
+                            <span class="new-price">$@prd.Price</span>
+                        </div>
+                        <div class="rating-box">
+                            <ul>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
